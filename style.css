@@ -96,7 +96,7 @@ body {
 }
 
 /* Optionally, add styles for mobile responsiveness */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
     #move_btn {
         flex-direction: row;
         justify-content: center;
