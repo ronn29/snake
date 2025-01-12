@@ -138,7 +138,6 @@ function change_direction_by_button(direction) {
 
 function change_direction(event) {
     const key_pressed = event.keyCode;
-    console.log(key_pressed);
     const LEFT = 65;
     const RIGHT = 68;
     const DOWN = 83;
