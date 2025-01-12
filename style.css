@@ -11,6 +11,8 @@ body {
 #game_container {
     text-align: center;
     position: relative;
+    width: 450px; /* Default width */
+    height: 450px; /* Default height */
 }
 
 #gameboard {
@@ -40,7 +42,6 @@ body {
     background-color: #8d0c0c;
 }
 
-/* Button container for movement buttons */
 #move_btn {
     display: flex;
     flex-direction: column;
@@ -49,7 +50,6 @@ body {
     margin-top: 20px;
 }
 
-/* Styling for the individual movement buttons */
 #move_btn button {
     padding: 10px 20px;
     font-size: 18px;
@@ -65,7 +65,6 @@ body {
     background-color: #45a049;
 }
 
-/* Position the buttons like WASD keyboard layout */
 #up_btn {
     margin-bottom: 5px;
 }
@@ -74,28 +73,27 @@ body {
     position: relative;
 }
 
-/* Arrange the buttons in the WASD layout */
 #down_btn {
     position: absolute;
-    top: 0;
+    top: 20px;
 }
 
 #up_btn {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
 }
 
 #left_btn {
     position: absolute;
-    left: 125px;
+    left: 120px;
 }
 
 #right_btn {
     position: absolute;
-    right: 120px;
+    right: 110px;
 }
 
-@media only screen and (max-width: 400) {
+@media screen and (max-width: 430px) {
     #move_btn {
         flex-direction: row;
         justify-content: center;
@@ -105,8 +103,14 @@ body {
         padding: 8px 16px;
         font-size: 14px;
     }
-    #gameboard{
-        width: 400px;
-        height: 400px;
+
+    #game_container {
+        width: 300px; /* Adjusted to make the container slightly smaller */
+        height: 300px; /* Adjusted height */
+    }
+
+    #gameboard {
+        width: 100%; /* Make the canvas fit within the smaller container */
+        height: 100%; /* Ensure the canvas scales with the container */
     }
 }
