@@ -1,3 +1,4 @@
+
 const gameboard = document.querySelector('#gameboard');
 const ctx = gameboard.getContext('2d');
 const score_text = document.querySelector('#score');
@@ -9,12 +10,18 @@ const snake_color = 'lightgreen';
 const snake_border = 'black';
 const food_color = 'red';
 const unit_size = 25;
+
+//apple
+const apple_img = new Image();
+apple_img.src = 'img/apple_sus.png'; 
+
 let game_running = false;
 let x_velocity = unit_size;
 let y_velocity = 0;
 let food_x;
 let food_y;
 let score = 0;
+let time_out_id;
 
 let snake = [
     {x:unit_size * 4, y:0},
@@ -40,7 +47,7 @@ function game_start(){
 };
 function next_tick(){
     if(game_running){
-        setTimeout(()=>{
+        time_out_id = setTimeout (()=>{
             clearboard();
             draw_food();
             move_snake();
@@ -68,8 +75,8 @@ function create_food(){
     
 };
 function draw_food(){
-    ctx.fillStyle = food_color;
-    ctx.fillRect(food_x, food_y, unit_size, unit_size);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(apple_img, food_x, food_y, unit_size, unit_size); // Draw the apple at food_x, food_ys
 };
 function move_snake(){
     const head = {x: snake[0].x + x_velocity,
@@ -202,6 +209,7 @@ function reset_game(){
         {x:unit_size, y:0},
         {x:0, y:0}
     ]
+    clearTimeout(time_out_id)
     game_start();
 };
 
