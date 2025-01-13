@@ -54,9 +54,10 @@ function next_tick(){
             draw_snake();
             check_gameover();
             next_tick();
-        }, 75) // gamespeed
+        }, 80) // gamespeed
     }
     else{
+        show_reset();
         display_gameover();
     }
 };
@@ -102,7 +103,7 @@ function draw_snake(){
 
 
 function change_direction_by_button(direction) {
-    // Avoid moving in the opposite direction
+    
     const going_up = (y_velocity == -unit_size);
     const going_down = (y_velocity == unit_size);
     const going_right = (x_velocity == unit_size);
@@ -138,31 +139,32 @@ function change_direction_by_button(direction) {
 
 function change_direction(event) {
     const key_pressed = event.keyCode;
+
     const LEFT = 65;
     const RIGHT = 68;
     const DOWN = 83;
     const UP = 87;
 
-    // Check if the snake is moving in the opposite direction
+    
     const going_up = (y_velocity == -unit_size);
     const going_down = (y_velocity == unit_size);
     const going_right = (x_velocity == unit_size);
     const going_left = (x_velocity == -unit_size);
 
     switch (true) {
-        case (key_pressed == LEFT && !going_right): // Can't move left if already moving right
+        case (key_pressed == LEFT && !going_right): 
             x_velocity = -unit_size;
             y_velocity = 0;
             break;
-        case (key_pressed == UP && !going_down): // Can't move up if already moving down
+        case (key_pressed == UP && !going_down): 
             x_velocity = 0;
             y_velocity = -unit_size;
             break;
-        case (key_pressed == RIGHT && !going_left): // Can't move right if already moving left
+        case (key_pressed == RIGHT && !going_left): 
             x_velocity = unit_size;
             y_velocity = 0;
             break;
-        case (key_pressed == DOWN && !going_up): // Can't move down if already moving up
+        case (key_pressed == DOWN && !going_up): 
             x_velocity = 0;
             y_velocity = unit_size;
             break;
@@ -194,7 +196,9 @@ function display_gameover(){
     ctx.font = "25px bold";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
+    ctx.fillText("SCORE: "+ score, game_width / 2, game_height / 2.4);
     ctx.fillText("GAME OVER!", game_width / 2, game_height / 2);
+    
     game_running = false;
 };
 function reset_game(){
@@ -209,7 +213,14 @@ function reset_game(){
         {x:0, y:0}
     ]
     clearTimeout(time_out_id)
+    unshow_reset();
     game_start();
 };
 
+function show_reset(){
+    document.getElementById("reset_btn").style.display = "inline-block";
+}
 
+function unshow_reset(){
+    document.getElementById("reset_btn").style.display = "none";
+}
