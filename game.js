@@ -11,7 +11,7 @@ const snake_border = 'black';
 const food_color = 'red';
 const unit_size = 25;
 
-//apple
+
 const apple_img = new Image();
 apple_img.src = 'img/apple_sus.png'; 
 
@@ -77,14 +77,14 @@ function create_food(){
 };
 function draw_food(){
     ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(apple_img, food_x, food_y, unit_size, unit_size); // Draw the apple at food_x, food_ys
+    ctx.drawImage(apple_img, food_x, food_y, unit_size, unit_size); 
 };
 function move_snake(){
     const head = {x: snake[0].x + x_velocity,
                     y:snake[0].y + y_velocity
     }
     snake.unshift(head);
-    if(snake[0].x == food_x && snake[0].y == food_y){ // if food is eaten
+    if(snake[0].x == food_x && snake[0].y == food_y){ 
         score+= 1;
         score_text.textContent = score;
         create_food();
